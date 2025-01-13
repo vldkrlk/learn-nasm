@@ -8,12 +8,13 @@
 global _start
 section .text
 _start:
-                                        ; set array elements to 0
-    mov     ecx, 16                     ;   array size
-    mov     esi, set512                 ;   array pointer 
-lp: mov     [esi+4*ecx-4], eax          ;   set element to 0
-    loop    lp                          ;   continue loop
-                                        ; find element indexes              
+    xor eax, eax                        ; set array elements to 0
+    mov edi, set512
+    mov ecx, 16
+    cld
+lp: stosd
+    loop lp
+                                        ; find element indexes
     mov     ebx, 76                     ;   this is a bit index in array
     mov     edx, ebx                    ;   make a copy
     and     ebx, 11111b                 ;   remainder of division by 32 - index of bit inside an array element
@@ -24,6 +25,7 @@ lp: mov     [esi+4*ecx-4], eax          ;   set element to 0
     mov     cl, bl                      ;   shift index in array element  
     shl     edx, cl                     ;   shift by index 
                                         ; set byte in array element
+    mov esi, set512
     shr     ebx, 8                      ;   remove the remainder to access an array element
     or      dword [esi+4*ebx-4], edx    ;   apply a mask to an array element
     mov     eax, dword [esi+4*ebx-4]    ; set the appropriate element in eax to make it easier to debug
@@ -31,4 +33,3 @@ lp: mov     [esi+4*ecx-4], eax          ;   set element to 0
 
 section .bss
     set512 resd 16                      ; set of elemets
-    idx    db   90                      ; element to change
