@@ -30,5 +30,5 @@ lp: mov     [esi+4*ecx-4], eax          ;   set element to 0
     FINISH
 
 section .bss
-    set512 resd 16 ; set of elemets
-    idx    db   90 ; element to change
+    set512 resd 16                      ; set of elemets
+    idx    db   90                      ; element to change
