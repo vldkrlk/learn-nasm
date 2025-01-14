@@ -1,4 +1,4 @@
-%include "../include/stud_io.inc"
+%include "include/stud_io.inc"
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;;; Reverse string using stack

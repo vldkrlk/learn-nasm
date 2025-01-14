@@ -1,4 +1,4 @@
-%include "../include/stud_io.inc"
+%include "include/stud_io.inc"
 
 %define VENDOR_ID_LENGTH 12
 
